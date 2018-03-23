@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="smartkycApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Detailed View</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    <!--<link rel="stylesheet" href="css/registration.css">-->
+    <link rel="stylesheet" href="css/admin.css">
+
+</head>
+<body ng-controller="userDetailCtrl">
+<div class="loader_container" id="loader" ng-show="loading">
+    <div class="cryp_loader">
+        <img class="loader_img" src="images/loader.png">
+        <img class="loader_img_inner" src="images/loader.png">
+    </div>
+</div>
+<div class="outer">
+    <div class="header">
+        <div class="logo">
+            wisepass
+        </div>
+        <div class="nav_bar">
+            <a href="user_list.html">
+                <div class="nav_com">
+                    Clients
+                </div>
+            </a>
+            <a href="reset_password.html">
+                <div class="nav_com">
+                    Password
+                </div>
+            </a>
+            <a href="#" ng-click="logout()">
+                <div class="nav_com">
+                    Logout
+                </div>
+            </a>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+
+    <div class="mob_nav_bar">
+        <a href="user_list.html">
+            <div class="nav_com">
+                Home
+            </div>
+        </a>
+        <a href="reset_password.html">
+            <div class="nav_com">
+                Password
+            </div>
+        </a>
+        <a href="#" ng-click="logout()">
+            <div class="nav_com">
+                Logout
+            </div>
+        </a>
+    </div>
+
+
+    <div class="sub_head">
+        <div class="nav_back">
+            <a href="user_list.html">
+                <img class="nav_back_img" src="../images/left-arrow.png">
+            </a>
+        </div>
+        <div class="sub_capt us_name">
+            {{user.users_first_name}} {{user.users_last_name}}
+            <span ng-if="user.users_verify_status == 1"><img src="images/verified-protection.png" /></span>
+        </div>
+
+        <div class="sub_accpt" >
+            <div class="acpt_dcl" ng-click="updateStatus(1)">
+                Approve
+            </div>
+            <div class="acpt_dcl dcl" ng-click="updateStatus(2)">
+                Reject
+            </div>
+        </div>
+
+        <div style="clear: both"></div>
+    </div>
+
+    <div class="content_navigation">
+        <p>Account Type</p>
+        <div class="to_nav_tab indiv">
+            <img src="images/business-card-of-a-man-with-contact-info.png">
+            <div class="nav_desc">Individual</div>
+        </div>
+        <div class="to_nav_tab">
+            <img src="images/office.png">
+            <div class="nav_desc">Company</div>
+        </div>
+    </div>
+
+    <div class="content_wrap">
+        <div class="content_nav">
+            <div class="blocks pr_company active tab " data-id="#personal">
+                <div class="blocks_capt">
+                    Personal Information
+                </div>
+            </div>
+            <div class="blocks comp_blk_dis personal tab" data-id="#personal_2">
+                <div class="blocks_capt">
+                    Company Information
+                </div>
+            </div>
+            <div class="blocks company tab" data-id="#personal_3">
+                <div class="blocks_capt">
+                    Submitted Documents
+                </div>
+            </div>
+        </div>
+        <div class="main_container">
+            <div class="personal_wrap wraps_common" id="personal">
+
+                <div class="text_box_wrap">
+                    <div class="text_box_left txt_bx">
+                        <div class="text_desc">First Name</div>
+                        <p class="det_vw">{{user.users_first_name}}</p>
+                    </div>
+                    <div class="text_box_right txt_bx">
+                        <div class="text_desc">Last Name</div>
+                        <p class="det_vw">{{user.users_last_name}}</p>
+                    </div>
+
+                    <div style="clear: both"></div>
+                </div>
+                <div class="text_box_wrap">
+                    <div class="text_box_left txt_bx">
+                        <div class="text_desc">Gender</div>
+                        <div class="radio_outer">
+                            <div class="male_out">
+                                {{user.gender}}
+                            </div>
+                        </div>
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+
+                <div class="text_box_wrap">
+                    <div class="text_box_full txt_bx">
+                        <div class="text_desc">Address</div>
+                        <div class="radio_outer no-padding">
+                            <p class="">{{user.users_address1}}</p>
+                            <p class="">{{user.users_address2}}</p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="text_box_wrap">
+                    <div class="text_box_left txt_bx">
+                        <div class="text_desc">City</div>
+                        <p class="det_vw">{{user.users_city}}</p>
+                    </div>
+                    <div class="text_box_right txt_bx">
+                        <div class="text_desc">State/Province/Region</div>
+                        <p class="det_vw">{{user.users_state}}</p>
+                    </div>
+
+                    <div style="clear: both"></div>
+                </div>
+
+                <div class="text_box_wrap">
+                    <div class="text_box_left txt_bx">
+                        <div class="text_desc">Country of Residence</div>
+                        <p class="det_vw">{{user.users_country_residence}}</p>
+                    </div>
+                    <div class="text_box_right txt_bx">
+                        <div class="text_desc">Zip/Postal code</div>
+                        <p class="det_vw">{{user.users_zip}}</p>
+                    </div>
+
+                    <div style="clear: both"></div>
+                </div>
+
+                <div class="text_box_wrap">
+                    <div class="text_box_left txt_bx">
+                        <div class="text_desc">Mobile (With Country Code)</div>
+                        <p class="det_vw">{{user.users_mobile_number}}</p>
+                    </div>
+                    <div class="text_box_right txt_bx">
+                        <div class="text_desc">Date Of Birth</div>
+                        <p class="det_vw">{{user.users_date_of_birth | date:'MM-dd-yyyy'}}</p>
+                    </div>
+
+                    <div style="clear: both"></div>
+                </div>
+
+                <div class="text_box_wrap">
+                    <div class="text_box_left txt_bx">
+                        <div class="text_desc">ID Type</div>
+                        <p class="det_vw">{{user.users_id_type}}</p>
+                    </div>
+                    <div class="text_box_right txt_bx">
+                        <div class="text_desc">ID number</div>
+                        <p class="det_vw">{{user.users_id_number}}</p>
+                    </div>
+
+                    <div style="clear: both"></div>
+                </div>
+
+                <div class="text_box_wrap">
+                    <div class="text_box_left txt_bx">
+                        <div class="text_desc">ID Issue date</div>
+                        <p class="det_vw">{{user.users_id_issue_date | date:'MM-dd-yyyy'}}</p>
+                    </div>
+                    <div class="text_box_right txt_bx">
+                        <div class="text_desc">ID valid to (if any)</div>
+                        <p class="det_vw">{{user.users_id_valid_date | date:'MM-dd-yyyy'}}</p>
+                    </div>
+
+                    <div style="clear: both"></div>
+                </div>
+
+            </div>
+
+
+            <div class="company_wrap wraps_common" id="personal_2">
+                <div class="text_box_wrap">
+                    <div class="text_box_left txt_bx">
+                        <div class="text_desc">Company Name</div>
+                        <p class="det_vw">{{user.company_name}}</p>
+                    </div>
+                    <div class="text_box_right txt_bx">
+                        <div class="text_desc">Phone</div>
+                        <p class="det_vw">{{user.company_phone_number}}</p>
+                    </div>
+
+                    <div style="clear: both"></div>
+                </div>
+
+                <div class="text_box_wrap">
+                    <div class="text_box_left txt_bx">
+                        <div class="text_desc">Website Url</div>
+                        <p class="det_vw">{{user.company_url}}</p>
+                    </div>
+                    <div class="text_box_right txt_bx">
+                        <div class="text_desc">Nature of business</div>
+                        <p class="det_vw">{{user.company_bussiness_nature}}</p>
+                    </div>
+
+                    <div style="clear: both"></div>
+                </div>
+
+
+                <div class="text_box_wrap">
+                    <div class="text_box_full txt_bx">
+                        <div class="text_desc">Who are your customers? Where are they located</div>
+                        <p class="det_vw">{{user.company_customer_type_q}}</p>
+                    </div>
+                </div>
+                <div class="text_box_wrap">
+                    <div class="text_box_full txt_bx">
+                        <div class="text_desc">Do you have a KYC policy in place for your customers? If so, please provide a URL to your policy page.</div>
+                        <p class="det_vw">{{user.company_user_url_q}}</p>
+                    </div>
+                </div>
+                <div class="text_box_wrap">
+                    <div class="text_box_full txt_bx">
+                        <div class="text_desc">Do you perform due to dilligence on your customers? what information do you collect from them?</div>
+                        <p class="det_vw">{{user.company_customer_info_q}}</p>
+                    </div>
+                </div>
+
+
+                <div class="text_box_wrap">
+                    <div class="text_box_left txt_bx">
+                        <div class="text_desc">Expected Average Order Size (USD)</div>
+                        <p class="det_vw">{{user.company_expt_avgorder_q}}</p>
+                    </div>
+                    <div class="text_box_right txt_bx">
+                        <div class="text_desc">Nature of activity</div>
+                        <p class="det_vw">{{user.company_activity_nature_q}}</p>
+                    </div>
+
+                    <div style="clear: both"></div>
+                </div>
+
+                <div class="text_box_wrap">
+                    <div class="text_box_full txt_bx">
+                        <div class="text_desc">What bank will you be using for deposits and withdrawals, and where is it located?</div>
+                        <p class="det_vw">{{user.company_bankdetails_q}}</p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="documents_wrap wraps_common" id="personal_3">
+
+                <div class="docs_list">
+                    <div class="doc_item" ng-repeat="item in userImage">
+                        <div><a href="{{item.usersImage_image}}" target="_blank"> Document {{$index + 1}}</a></div>
+                        <div><a href="{{item.usersImage_image}}" download="" target="_blank" class="view_btn">DOWNLOAD</a> </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <!--<div class="to_top">-->
+        <!--</div>-->
+        <div class="copy_right">
+            Copyright © 2018 wisepass.co. All Rights Reserved.
+        </div>
+        <div class="copy_links" style="display: none;">
+            <div class="copy_blocks">
+                About Us
+            </div>
+            <div class="copy_blocks">
+                Fees
+            </div>
+            <div class="copy_blocks">
+                Terms of use
+            </div>
+            <div class="copy_blocks">
+                Privacy Policy
+            </div>
+            <div class="copy_blocks">
+                Contact Us
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </footer>
+
+</div>
+
+<style>
+    .wraps_common{
+        display: none;
+        margin-bottom: 50px;
+        border: 1px solid #666;
+    }
+    #personal{
+        display: block;
+    }
+</style>
+<script rel="script" src="../js/libs/jquery.min.js"></script>
+<script rel="script" src="../js/libs/angular.min.js"></script>
+<script rel="script" src="../js/libs/angular-route.min.js"></script>
+<script rel="script" src="../js/config.js"></script>
+<script rel="script" src="../js/toast/toast.js"></script>
+<script rel="script" src="js/registration.js"></script>
+<script rel="script" src="../js/maincontroller.js"></script>
+<script rel="script" src="../js/userDetailCtrl.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="smartkycApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Login</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body ng-controller="adminloginCntl" class="login_bg">
+
+<div class="outer index_out">
+    <div class="header">
+        <div class="log_logo">
+            <a href="#" >wisepass</a>
+        </div>
+
+        <div class="nav_bar">
+
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+
+    <div class="sub_head_log">
+        <div class="sub_capt">
+            Admin Login
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <div class="content_wrap_log">
+
+        <div class="login_block active" id="login_block">
+            <div class="text_box_wrap">
+                <h2>Admin Login</h2>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Username</div>
+                    <input type="text" ng-model="details.email">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Password</div>
+                    <input type="password" ng-model="details.password">
+                </div>
+                <div class="user_list">
+                        <div class="login_btn" ng-click="adminlogIn()" ng-disabled="blockbutton">
+                            Login
+                        </div>
+                    <div class="frgt_link">
+                        <p ng-click="switchPassBox(1)">Forgot password</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="login_block" id="frgt_block">
+            <div class="text_box_wrap">
+                <h2>Forgot Password</h2>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Email</div>
+                    <input type="text" ng-model="forgot.email">
+                </div>
+                <div class="log_wrap">
+                    <div class="login_btn" ng-click="forgotPass()" ng-desabled="blockbutton">
+                        Submit
+                    </div >
+                    <div class="frgt_link">
+                        <p ng-click="switchPassBox(0)">Login</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script rel="script" src="../js/libs/jquery.min.js"></script>
+<script rel="script" src="../js/libs/angular.min.js"></script>
+<script rel="script" src="../js/libs/angular-route.min.js"></script>
+<script rel="script" src="../js/libs/datepicker.min.js"></script>
+<script rel="script" src="../js/config.js"></script>
+<script rel="script" src="../js/toast/toast.js"></script>
+<script rel="script" src="../js/registration.js"></script>
+<script rel="script" src="../js/maincontroller.js"></script>
+<script rel="script" src="../js/adminlogincontroller.js"></script>
+
+</body>
+</html>

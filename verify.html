@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="smartkycApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Verification</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    <link rel="stylesheet" href="css/registration.css">
+</head>
+<body ng-controller="crypbrokersCntl">
+
+<div class="outer" ng-controller="verifyCntl">
+    <div class="header">
+        <div class="logo">
+            <a href="#" >wisepass</a>
+        </div>
+
+        <div class="nav_bar">
+            <a href="#">
+                <div class="nav_com">
+                    HOME
+                </div>
+            </a>
+            <a href="#" ng-click="logout()">
+                <div class="nav_com">
+                    Logout
+                </div>
+            </a>
+        </div>
+        <div class="ham_icon">
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div class="mob_nav_bar">
+        <a href="index.html">
+            <div class="nav_com">
+                HOME
+            </div>
+        </a>
+        <a href="#" ng-click="logout()">
+            <div class="nav_com">
+                Logout
+            </div>
+        </a>
+    </div>
+
+
+
+
+
+    <div class="content_wrap_ver">
+
+        <div class="personal_wrap wraps_common" style="display: none" id="personal">
+            <h2>
+
+            </h2>
+            <div class="text_box_wrap">
+                <div class="text_box_left txt_bx">
+                    <div class="text_desc">Name</div>
+                    <div class="name_disp">{{details.userRegistration_username}}</div>
+                </div>
+                <div class="text_box_right txt_bx">
+                    <div class="text_desc">Gender</div>
+                    <div class="name_disp">{{details.gender}}</div>
+                </div>
+                <div style="clear: both"></div>
+            </div>
+
+
+            <div class="text_box_wrap">
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Address</div>
+                    {{details.users_address1}}<br>
+                    {{details.users_address2}}<br>
+                    {{details.users_address3}}<br>
+                </div>
+            </div>
+
+
+            <div class="text_box_wrap">
+                <div class="text_box_left txt_bx">
+                    <div class="text_desc">City</div>
+                    {{details.users_city}}
+                </div>
+                <div class="text_box_right txt_bx">
+                    <div class="text_desc">State/Province/Region</div>
+                    {{details.users_state}}
+                </div>
+
+                <div style="clear: both"></div>
+            </div>
+
+
+
+            <div class="text_box_wrap">
+                <div class="text_box_left txt_bx">
+                    <div class="text_desc">Mobile (With Country Code)</div>
+                    {{details.users_mobile_number}}
+                </div>
+                <div class="text_box_right txt_bx">
+                    <div class="text_desc">Date Of Birth (mm/dd/yyyy)</div>
+                    {{details.users_date_of_birth}}
+                </div>
+
+                <div style="clear: both"></div>
+            </div>
+
+
+
+
+
+        </div>
+
+        <div class="tab_wrap">
+            <ul>
+                <li class="active" data-id="#general">
+                    <img src="images/home.png" />
+                    <div>GENERAL</div>
+                </li>
+                <li data-id="#verify">
+                    <img src="images/verified-list-of-exercises-of-a-gymnast-on-a-clipboard.png" />
+                    <div>VERIFY</div>
+                </li>
+                <li data-id="#password">
+                    <img src="images/lock.png" />
+                    <div>PASSWORD</div>
+                </li>
+                <li data-id="#orders" ng-if="user.users_verify_status == 1" ng-click="changeTab($event)">
+                    <img src="images/shopping-cart.png" />
+                    <div>ORDER FORM</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="tab_content_wrap">
+        <div class="tab_content active" id="general">
+            <!--<div class="flow_wrap">-->
+                <!--<div class="flow">-->
+                    <!--<div class="icon" style="background-image: url('images/started.png')"></div>-->
+                    <!--<p>Complete KYC Process</p>-->
+                    <!--<a href="registration.html" class="started_btn">Get started</a>-->
+                <!--</div>-->
+                <!--<div class="flow">-->
+                    <!--<div class="icon" style="background-image: url('images/verified.png')"></div>-->
+                    <!--<p>Get Verified</p>-->
+                <!--</div>-->
+                <!--<div class="flow">-->
+                    <!--<div class="icon" style="background-image: url('images/place.png')"></div>-->
+                    <!--<p>Place your order</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <div class="reset_pass_wrap">
+                <div class="text_box_wrap">
+                    <div class="text_box_full txt_bx">
+                        <div class="text_desc">Email address</div>
+                        <input type="text" placeholder="Enter email" ng-model="general.email"/>
+                    </div>
+                </div>
+                <div class="text_box_wrap">
+                    <div class="text_box_full txt_bx">
+                        <div class="text_desc">Phone number</div>
+                        <input type="text" placeholder="Enter phone number" ng-model="general.mobile"/>
+                    </div>
+                </div>
+
+                <div class="log_wrap">
+                    <div class="login_btn" ng-click="updateGeneral()">
+                        Save
+                    </div>
+                    <div style="clear: both"></div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="tab_content" id="verify">
+            <div class="reset_pass_wrap">
+                <div class="verification_wrap" ng-if="user.users_verify_status == 0">
+                    <div class="">Your account is not yet verified</div>
+                </div>
+                <div class="verif_button_wrap" ng-if="user.users_verify_status == 0 || user.length==0">
+                    <a href="registration.html">
+                        <div class="ver_but">Get Verified</div>
+                    </a>
+                </div>
+                <div class="verif_button_wrap" ng-if="user.users_verify_status == 1">
+                    <a href="registration.html">
+                        <div class="ver_but">Edit information</div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+        <div class="tab_content" id="password">
+            <div class="reset_pass_wrap">
+                <h2>Reset Password</h2>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Current Password</div>
+                    <input type="password" ng-model="passDeatils.oldpass">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">New Password</div>
+                    <input type="password" ng-model="passDeatils.password">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Re-Type New Password</div>
+                    <input type="password" ng-model="passDeatils.reenterpassword">
+                </div>
+                <div class="log_wrap">
+                    <div class="login_btn" ng-click="resetPassword()">
+                        Reset
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab_content" id="orders">
+            <div class="reset_pass_wrap">
+                <h2>Place An Order</h2>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Full Name</div>
+                    <input type="text" ng-model="order.name">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Country</div>
+                    <input type="text" ng-model="order.country">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Email</div>
+                    <input type="email" ng-model="order.email">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Phone</div>
+                    <input type="text" ng-model="order.phone">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Order amount (USD)</div>
+                    <input type="text" ng-model="order.amount">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Order Type</div>
+                    <select ng-model="order.type">
+                        <option>Buying</option>
+                        <option>Selling</option>
+                        <option>Buying & Selling</option>
+                    </select>
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Order message</div>
+                    <textarea cols="30" ng-model="order.message"></textarea>
+                </div>
+                <div class="text_box_full txt_bx terms_wrap">
+                    <input type="checkbox" name="terms" id="terms"/>
+                    <label for="terms">I agree to be contacted by a representative</label>
+                </div>
+                <div class="log_wrap">
+                    <div class="login_btn" ng-click="placeOrder()">
+                        Submit
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <footer>
+        <!--<div class="to_top">-->
+        <!--</div>-->
+        <div class="copy_right">
+            Copyright © 2018 wisepass.co. All Rights Reserved.
+        </div>
+        <div class="copy_links" style="display: none;">
+            <div class="copy_blocks">
+                About Us
+            </div>
+            <div class="copy_blocks">
+                Fees
+            </div>
+            <div class="copy_blocks">
+                Terms of use
+            </div>
+            <div class="copy_blocks">
+                Privacy Policy
+            </div>
+            <div class="copy_blocks">
+                Contact Us
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+    </footer>
+
+</div>
+
+<script rel="script" src="js/libs/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script rel="script" src="js/libs/angular.min.js"></script>
+<script rel="script" src="js/libs/angular-route.min.js"></script>
+<script rel="script" src="js/libs/datepicker.min.js"></script>
+<script rel="script" src="js/libs/datepicker.en.js"></script>
+<script rel="script" src="js/libs/dropzone.js"></script>
+<script rel="script" src="js/toast/toast.js"></script>
+<script rel="script" src="js/config.js"></script>
+<script rel="script" src="js/registration.js"></script>
+<script rel="script" src="js/maincontroller.js"></script>
+<script rel="script" src="js/verifycontroller.js"></script>
+
+
+<script>
+    $('.datepicker-here').datepicker
+    ({
+        language: 'en',dateFormat: 'yyyy-mm-dd'
+    });
+
+</script>
+</body>
+</html>

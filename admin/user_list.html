@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="smartkycApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Login</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body ng-controller="userlistCntl">
+<div class="loader_container" id="loader" ng-show="loading">
+    <div class="cryp_loader">
+        <img class="loader_img" src="images/loader.png">
+        <img class="loader_img_inner" src="images/loader.png">
+    </div>
+</div>
+<div class="outer">
+    <div class="header">
+        <div class="logo">
+            <a href="#" >wisepass</a>
+        </div>
+        <div class="nav_bar">
+            <a href="#">
+                <div class="nav_com active">
+                    Clients
+                </div>
+            </a>
+            <a href="reset_password.html">
+                <div class="nav_com">
+                    Password
+                </div>
+            </a>
+            <a href="#" ng-click="logout()">
+                <div class="nav_com">
+                    Logout
+                </div>
+            </a>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+
+    <div class="sub_head">
+        <div class="sub_capt">
+            Clients
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <div class="content_wrap_ad">
+        <table class="ad_tab">
+            <thead>
+                <tr class="under_row">
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Location</th>
+                    <th>Account Type</th>
+                    <th>Submission Date</th>
+                    <th>KYC Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="info in details | orderBy:'created_date':true" ng-click="goToUserPage(info.userRegistration_uniqueId)" class="user_item">
+                <td>{{info.users_first_name}} {{info.users_last_name}}</td>
+                <td>{{info.userRegistration_email}}</td>
+                <td>{{info.users_city}}, {{info.users_country_residence}}</td>
+                <td>{{info.users_account_type}}</td>
+                <td>{{info.created_date | date:'MM/dd/yyyy'}}</td>
+                <td>{{info.users_kyc_status}}</td>
+                <td><a href="detailed_view.html" class="view_btn">VIEW</a> </td>
+            </tr>
+
+            <!--<tr>-->
+                <!--<td>01</td>-->
+                <!--<td>John doe</td>-->
+                <!--<td>johndoe@gmail.com</td>-->
+                <!--<td>22/22/2019</td>-->
+            <!--</tr>-->
+
+            <!--<tr>-->
+                <!--<td>01</td>-->
+                <!--<td>John doe</td>-->
+                <!--<td>johndoe@gmail.com</td>-->
+                <!--<td>22/22/2019</td>-->
+            <!--</tr>-->
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script rel="script" src="../js/libs/jquery.min.js"></script>
+<script rel="script" src="../js/libs/angular.min.js"></script>
+<script rel="script" src="../js/libs/angular-route.min.js"></script>
+<script rel="script" src="../js/config.js"></script>
+<script rel="script" src="../js/toast/toast.js"></script>
+<script rel="script" src="../js/registration.js"></script>
+<script rel="script" src="../js/maincontroller.js"></script>
+<script rel="script" src="../js/userlistcontroller.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="smartkycApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Signup</title>
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png"/>
+    <link rel="stylesheet" href="css/registration.css">
+</head>
+<body ng-controller="signupCntl">
+
+<div class="outer index_out">
+    <div class="header">
+        <div class="log_logo">
+            <a href="#" >wisepass</a>
+        </div>
+        <div class="nav_bar log_nav">
+            <a href="index.html">
+                <div class="nav_com">
+                    Login
+                </div>
+            </a>
+        </div>
+        <div style="clear:both;"></div>
+    </div>
+    <div class="sub_head_log">
+        <div class="sub_capt">
+            Sign up here
+        </div>
+        <div style="clear: both"></div>
+    </div>
+    <div class="content_wrap_log">
+        <div class="login_block active">
+            <div class="text_box_wrap">
+                <h2>Create account </h2>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Name</div>
+                    <input type="text" ng-model="details.name">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Email</div>
+                    <input type="text" ng-model="details.email">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Password</div>
+                    <input type="password" ng-model="details.password">
+                </div>
+                <div class="text_box_full txt_bx">
+                    <div class="text_desc">Re-Type Password</div>
+                    <input type="password" ng-model="details.reenterpassword">
+                </div>
+                <div class="log_wrap">
+                    <div class="login_btn" ng-click="signUp()" ng-disabled="blockbutton">
+                        Signup
+                    </div>
+                </div>
+                <div class="register_link">
+                    Already have an account? <a href="index.html">Login here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script rel="script" src="js/libs/jquery.min.js"></script>
+<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script rel="script" src="js/libs/angular.min.js"></script>
+<script rel="script" src="js/libs/angular-route.min.js"></script>
+<script rel="script" src="js/config.js"></script>
+<script rel="script" src="js/toast/toast.js"></script>
+<script rel="script" src="js/registration.js"></script>
+<script rel="script" src="js/maincontroller.js"></script>
+<script rel="script" src="js/signupcontroller.js"></script>
+</body>
+</html>
